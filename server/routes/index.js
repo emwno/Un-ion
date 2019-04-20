@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function(app) {
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+  /* GET home listing. */
+  app.get('/', function(req, res, next) {
+    const data = [
+      {title: 'Fake 1', source: 'onion'},
+      {title: 'Fake 2', source: 'nottheonion'},
+    ];
 
-module.exports = router;
+    res.json(customers);
+  });
+
+};
