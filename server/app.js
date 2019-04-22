@@ -20,13 +20,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-// Setup session
-app.use(expsession({
-    secret: 'un-ion',
-    resave: false,
-    saveUninitialized: true,
-}));
-
 // Setup body parser
 app.use(bodyParser.urlencoded({
     extended: false

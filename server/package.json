@@ -8,7 +8,6 @@
   "dependencies": {
     "backendless": "^5.2.10",
     "body-parser": "^1.18.3",
-    "express": "~4.16.0",
-    "express-session": "^1.16.1"
+    "express": "~4.16.0"
   }
 }
