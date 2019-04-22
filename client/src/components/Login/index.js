@@ -5,8 +5,8 @@ import "./styles.css"
 
 class Login extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.onLogin = this.onLogin.bind(this);
     }
       
@@ -17,10 +17,11 @@ class Login extends Component {
             "username": event.target.username.value,
             "password": event.target.password.value
         })
-        .then(function (response) {
+        .then(response => {
             console.log('Login: ' + response.statusText);
+            this.props.history.push("/");
         })
-        .catch(function (error) {
+        .catch(error => {
             console.log('Login '+error);
             alert('Login Unsuccessful');
         });

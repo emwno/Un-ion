@@ -14,8 +14,9 @@ class Home extends Component {
         axios.get('http://localhost:5000/login/check').then(function (response) {
             console.log("logged in");
         })
-        .catch(function (error) {
-            alert('redierect to login/register');
+        .catch(error => {
+            console.log('Redirect to /login');
+            this.props.history.push("/login");
             return;
         });
 
