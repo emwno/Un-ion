@@ -12,9 +12,9 @@ import Game from './components/Game';
 const route = (
   <Router>
     <div>
-      <Route exact path={ROUTES.HOME} component={Home} />
-      <Route path={ROUTES.LOGIN} component={Login} />
-      <Route path={ROUTES.GAME} component={Game} />
+      <Route exact path="/" component={Home} />
+      <Route path="/login"component={Login} />
+      <Route path="/game" component={Game} />
     </div>
   </Router>
 )
