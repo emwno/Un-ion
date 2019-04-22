@@ -1,0 +1,20 @@
+#!/bin/bash
+printf "\n============"
+printf "\nInstall Main\n"
+printf "============\n\n"
+npm install
+npm audit fix
+
+printf "\n=============="
+printf "\nInstall Client\n"
+printf "==============\n\n"
+cd client
+npm install
+npm audit fix
+
+printf "\n=============="
+printf "\nInstall Server\n"
+printf "==============\n\n"
+cd ../server
+npm install
+npm audit fix
