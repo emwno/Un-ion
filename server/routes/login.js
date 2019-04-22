@@ -2,14 +2,20 @@ module.exports = function(app) {
   
   /* GET check logged in or not */
   app.get("/login/check", function(req, res) {
-    let check = req.session.currentUser == null;
-    if (check === true) {
+    Backendless.UserService.getCurrentUser()
+    .then(currentUser => {
+      if (currentUser) {
+        res.status(200);
+      } else {
+        res.status(401);
+      }
+      res.send();
+    })
+    .catch(error => {
+      console.log("Check Error: " + error);
       res.status(401);
       res.send();
-    } else {
-      res.status(200);
-      res.send();
-    }
+    });
   });
 
   app.post("/logout", function(req, res) {
@@ -32,7 +38,6 @@ module.exports = function(app) {
     Backendless.UserService.login(req.body.username, req.body.password, true)
       .then(function(loggedInUser) {
         console.log("Login Successful");
-        req.session.currentUser = loggedInUser;
         res.status(200);
         res.send();
       })

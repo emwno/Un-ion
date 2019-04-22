@@ -27,6 +27,13 @@ class Login extends Component {
         });
     }
 
+    componentDidMount(){
+        axios.get('http://localhost:5000/login/check').then(response => {
+            console.log("Logged In: Redirect to /");
+            this.props.history.push("/");
+        });
+    }
+
     render() {
         return (
             <div id="login-main">

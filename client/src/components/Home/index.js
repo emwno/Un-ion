@@ -20,9 +20,7 @@ class Home extends Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:5000/login/check').then(response => {
-            console.log("logged in");
-        })
+        axios.get('http://localhost:5000/login/check')
         .catch(error => {
             console.log('Redirect to /login');
             this.props.history.push("/login");
