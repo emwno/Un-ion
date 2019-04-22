@@ -7,7 +7,7 @@ module.exports = function(app) {
       {title: 'Fake 2', source: 'nottheonion'},
     ];
 
-    res.json(customers);
+    res.json(data);
   });
 
 };
