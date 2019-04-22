@@ -8,10 +8,19 @@ class Home extends Component {
         this.state = {
             titles: ""
         };
+        this.logout = this.logout.bind(this);
+    }
+
+    logout(){
+        axios.post('http://localhost:5000/logout', {}).then(response => {
+            console.log(response.status);
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
     componentDidMount(){
-        axios.get('http://localhost:5000/login/check').then(function (response) {
+        axios.get('http://localhost:5000/login/check').then(response => {
             console.log("logged in");
         })
         .catch(error => {
@@ -35,6 +44,7 @@ class Home extends Component {
             <div>
                 <h1>Home</h1>
                 <p>{JSON.stringify(this.state.titles)}</p>
+                <button onClick={this.logout}>LOGOUT</button>
             </div>
         );
     }

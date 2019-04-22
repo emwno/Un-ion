@@ -3,7 +3,7 @@ module.exports = function(app) {
   /* GET check logged in or not */
   app.get("/login/check", function(req, res) {
     let check = req.session.currentUser == null;
-    if (check == null) {
+    if (check === true) {
       res.status(401);
       res.send();
     } else {
@@ -15,7 +15,6 @@ module.exports = function(app) {
   app.post("/logout", function(req, res) {
     Backendless.UserService.logout().then(function(){
       console.log("Logout successful");
-      req.session.currentUser = null;
       res.status(200);
       res.send();
     }).catch(function(error){
@@ -23,6 +22,7 @@ module.exports = function(app) {
       res.status(400);
       res.send();
     });
+    req.session.currentUser = null;
     
   });
 
