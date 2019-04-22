@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom'
 import axios from 'axios';
 import "./styles.css"
 
@@ -10,7 +11,6 @@ class Login extends Component {
     }
       
     onLogin(event) {
-        console.log('React onLogin');
         event.preventDefault();
 
         axios.post('http://localhost:5000/login', {
@@ -18,10 +18,11 @@ class Login extends Component {
             "password": event.target.password.value
         })
         .then(function (response) {
-            console.log('React' + response);
+            console.log('Login: ' + response.statusText);
         })
         .catch(function (error) {
-            console.log('React' + error);
+            console.log('Login '+error);
+            alert('Login Unsuccessful');
         });
     }
 
