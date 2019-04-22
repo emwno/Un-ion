@@ -5,7 +5,6 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import * as serviceWorker from './serviceWorker';
 
-import App from './components/App';
 import Home from './components/Home';
 import Login from './components/Login';
 import Game from './components/Game';
