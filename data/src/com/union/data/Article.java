@@ -9,7 +9,7 @@ public class Article {
     private String title;
     private String link;
     private String thumbnail;
-    private boolean isFakeNews;
+    private boolean fakeNews;
 
     public String getObjectId() {
         return objectId;
@@ -43,11 +43,11 @@ public class Article {
         this.thumbnail = thumbnail;
     }
 
-    public boolean isFakeNews() {
-        return isFakeNews;
+    public boolean getFakeNews() {
+        return fakeNews;
     }
 
     public void setFakeNews(boolean fakeNews) {
-        isFakeNews = fakeNews;
+        this.fakeNews = fakeNews;
     }
 }

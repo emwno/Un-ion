@@ -25,6 +25,8 @@ public class Main {
         List<Article> realList = getRealArticles();
         List<Article> fakeList = getFakeArticles();
 
+        resetArticles();
+
         Backendless.Data.of(Article.class).create(realList, new AsyncCallback<List<String>>() {
             @Override
             public void handleResponse(List<String> strings) {
@@ -55,7 +57,7 @@ public class Main {
     }
 
     private static List<Article> getRealArticles() {
-        JsonNode node = getJson("https://www.reddit.com/r/theonion.json?limit=100");
+        JsonNode node = getJson("https://www.reddit.com/r/nottheonion.json?limit=100");
         List<Article> articleList = new ArrayList<>();
 
         for (final JsonNode objNode : node) {
@@ -63,16 +65,16 @@ public class Main {
             Article article = new Article();
             article.setTitle((objNode.get("data").get("title").asText()));
             article.setLink(objNode.get("data").get("url").asText());
-            int resSize = objNode.get("data").get("preview").get("images").get(0).get("resolutions").size();
+            article.setFakeNews(false);
 
             String thumb = "";
+            int resSize = objNode.get("data").get("preview").get("images").get(0).get("resolutions").size();
             if (resSize > 0 && resSize > 2) {
                 thumb = objNode.get("data").get("preview").get("images").get(0).get("resolutions").get(2).get("url").asText().replace("amp;", "");
             } else {
                 thumb = objNode.get("data").get("preview").get("images").get(0).get("source").get("url").asText().replace("amp;", "");
             }
             article.setThumbnail(thumb);
-            article.setFakeNews(true);
 
             articleList.add(article);
         }
@@ -81,7 +83,7 @@ public class Main {
     }
 
     private static List<Article> getFakeArticles() {
-        JsonNode node = getJson("https://www.reddit.com/r/nottheonion.json?limit=100");
+        JsonNode node = getJson("https://www.reddit.com/r/theonion.json?limit=100");
         List<Article> articleList = new ArrayList<>();
 
         for (final JsonNode objNode : node) {
