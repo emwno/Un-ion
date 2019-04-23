@@ -4,6 +4,7 @@ var Backendless = require('backendless');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
+var gameRouter = require('./routes/game');
 
 var app = express();
 
