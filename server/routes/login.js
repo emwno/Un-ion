@@ -28,7 +28,6 @@ module.exports = function(app) {
       res.status(400);
       res.send();
     });
-    req.session.currentUser = null;
     
   });
 

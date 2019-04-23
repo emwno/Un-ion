@@ -1,5 +1,4 @@
 var express = require('express');
-var expsession = require('express-session')
 var bodyParser = require('body-parser');
 var Backendless = require('backendless');
 
@@ -29,6 +28,7 @@ app.use(bodyParser.json());
 // Setup routes
 indexRouter(app);
 loginRouter(app);
+gameRouter(app);
 
 // Setup listener
 const port = 5000;
