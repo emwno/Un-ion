@@ -6,12 +6,11 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      article: {},
+      currID: -1,
       questionIDs: [],
-      currID: -1
+      articles: {}
     };
 
-    this.checkCorrect = this.checkCorrect.bind(this);
     this.generateRand = this.generateRand.bind(this);
   }
 
@@ -19,7 +18,12 @@ class Game extends Component {
     axios
       .get("http://localhost:5000/game")
       .then(response => {
-        // console.log(response.data);
+        this.setState({
+          articles: response.data
+        });
+        // console.log("HELLO");
+        // console.log(this.state.articles);
+
         // first ID
         this.generateRand();
       })
@@ -28,10 +32,7 @@ class Game extends Component {
       });
   }
 
-  //   check if the answer selected is correct or not
-  checkCorrect() {}
-
-  //   generate random number
+  //   generate random number and update values
   generateRand() {
     const rand = Math.floor(Math.random() * 100);
     var newArray = this.state.questionIDs.slice();
@@ -40,7 +41,6 @@ class Game extends Component {
       currID: rand,
       questionIDs: newArray
     });
-    console.log(this.state.questionIDs);
   }
 
   render() {
@@ -55,7 +55,7 @@ class Game extends Component {
           />
         </div>
         <div className="titleQuestion">
-          <h2>This is a placeholder for the article title</h2>
+          <h2>{this.state.articles[this.state.currID].title}</h2>
           <h2>Fake news?</h2>
         </div>
         <div className="buttons">
