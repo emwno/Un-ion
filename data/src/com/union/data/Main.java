@@ -69,8 +69,8 @@ public class Main {
 
             String thumb = "";
             int resSize = objNode.get("data").get("preview").get("images").get(0).get("resolutions").size();
-            if (resSize > 0 && resSize > 2) {
-                thumb = objNode.get("data").get("preview").get("images").get(0).get("resolutions").get(2).get("url").asText().replace("amp;", "");
+            if (resSize > 0 && resSize > 5) {
+                thumb = objNode.get("data").get("preview").get("images").get(0).get("resolutions").get(5).get("url").asText().replace("amp;", "");
             } else {
                 thumb = objNode.get("data").get("preview").get("images").get(0).get("source").get("url").asText().replace("amp;", "");
             }
@@ -95,8 +95,8 @@ public class Main {
 
             String thumb = "";
             int resSize = objNode.get("data").get("preview").get("images").get(0).get("resolutions").size();
-            if (resSize > 0 && resSize > 2) {
-                thumb = objNode.get("data").get("preview").get("images").get(0).get("resolutions").get(2).get("url").asText().replace("amp;", "");
+            if (resSize > 0 && resSize > 5) {
+                thumb = objNode.get("data").get("preview").get("images").get(0).get("resolutions").get(5).get("url").asText().replace("amp;", "");
             } else {
                 thumb = objNode.get("data").get("preview").get("images").get(0).get("source").get("url").asText().replace("amp;", "");
             }
