@@ -7,6 +7,7 @@ class Game extends Component {
 
     this.state = {
       currID: -1,
+      time: 60,
       questionIDs: [],
       articles: {}
     };
@@ -31,6 +32,15 @@ class Game extends Component {
       .catch(function(error) {
         console.log(error);
       });
+
+      this.interval = setInterval(() => 
+      this.setState({ 
+        time: (this.state.time - 1) 
+      }), 1000);
+}
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   //   generate random number and update values
@@ -49,13 +59,18 @@ class Game extends Component {
 
   onOption(event){
     event.preventDefault();
-    //let name = event.target.name;
+
     let fakeStatus = this.state.articles[this.state.currID].fakeNews;
-    console.log(fakeStatus);
-    if((fakeStatus && event.target.name === "fake") || (!fakeStatus && event.target.name === "real")){
+    if ((fakeStatus && event.target.name === "fake") || (!fakeStatus && event.target.name === "real")) {
         console.log("Correct!");
-    } else{
-        console.log("wrong");
+        this.setState({ 
+          time: (this.state.time + 5) 
+        });
+    } else {
+        console.log("Wrong");
+        this.setState({ 
+          time: (this.state.time - 10) 
+        });
     }
     this.generateRand();
   }
@@ -72,6 +87,7 @@ class Game extends Component {
           />
         </div>
         <div className="titleQuestion">
+          <h1>{this.state.time}</h1>
           <h2>{this.state.articles.length > 0 && this.state.currID > -1 && this.state.articles[this.state.currID].title}</h2>
           <h2>Fake news?</h2>
         </div>
