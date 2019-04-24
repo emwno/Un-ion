@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var Backendless = require('backendless');
 
-var indexRouter = require('./routes/index');
+var homeRouter = require('./routes/home');
 var loginRouter = require('./routes/login');
 var gameRouter = require('./routes/game');
 
@@ -32,7 +32,7 @@ app.use(
 app.use(bodyParser.json());
 
 // Setup routes
-indexRouter(app);
+homeRouter(app);
 loginRouter(app);
 gameRouter(app);
 
