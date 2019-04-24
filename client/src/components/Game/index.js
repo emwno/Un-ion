@@ -11,6 +11,7 @@ class Game extends Component {
       timePlayed: 0,
       score: 0,
       questionIDs: [],
+      questionObjectIDs: [],
       articles: {}
     };
 
@@ -54,10 +55,15 @@ class Game extends Component {
   generateRand() {
     let rand = Math.floor(Math.random() * 100);
     var newArray = this.state.questionIDs.slice();
+    var newQuestionObjectIDs = this.state.questionObjectIDs.slice();
+
     while (newArray.indexOf(rand) !== -1) {
       rand = Math.floor(Math.random() * 100);
-    }
+    }    
+
     newArray.push(rand);
+    newQuestionObjectIDs.push(this.state.articles[rand].objectId);
+
     this.setState({
       currID: rand,
       questionIDs: newArray
@@ -94,22 +100,14 @@ class Game extends Component {
       .post("http://localhost:5000/game/save", {
         score: this.state.score,
         timePlayed: this.state.timePlayed,
-        articles: this.state.questionIDs
-      })
-      .then(response => {
-        this.setState({
-          articles: response.data
-        });
-        console.log("HELLO");
-        console.log(this.state.articles);
-
-        // first ID
-        this.generateRand();
+        articles: this.state.questionObjectIDs
+      }).then(function(response){
+        console.log(response);
       })
       .catch(function(error) {
         console.log(error);
       });
-
+      this.props.history.push("/");
       return 0;
     }
   }
