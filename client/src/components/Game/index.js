@@ -22,8 +22,8 @@ class Game extends Component {
         this.setState({
           articles: response.data
         });
-        // console.log("HELLO");
-        // console.log(this.state.articles);
+        console.log("HELLO");
+        console.log(this.state.articles);
 
         // first ID
         this.generateRand();
@@ -50,6 +50,13 @@ class Game extends Component {
   onOption(event){
     event.preventDefault();
     //let name = event.target.name;
+    let fakeStatus = this.state.articles[this.state.currID].fakeNews;
+    console.log(fakeStatus);
+    if((fakeStatus && event.target.name === "fake") || (!fakeStatus && event.target.name === "no")){
+        console.log("Correct!");
+    } else{
+        console.log("wrong");
+    }
     this.generateRand();
   }
 
@@ -69,7 +76,7 @@ class Game extends Component {
           <h2>Fake news?</h2>
         </div>
         <div className="buttons">
-          <button type="button" className="yesButton" name="yes" onClick={this.onOption}>
+          <button type="button" className="yesButton" name="fake" onClick={this.onOption}>
             Yes
           </button>
           <button type="button" className="noButton" name="no" onClick={this.onOption}>
