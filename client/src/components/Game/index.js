@@ -22,8 +22,8 @@ class Game extends Component {
         this.setState({
           articles: response.data
         });
-        // console.log("HELLO");
-        // console.log(this.state.articles);
+        console.log("HELLO");
+        console.log(this.state.articles);
 
         // first ID
         this.generateRand();
@@ -37,8 +37,8 @@ class Game extends Component {
   generateRand() {
     let rand = Math.floor(Math.random() * 100);
     var newArray = this.state.questionIDs.slice();
-    while(newArray.indexOf(rand) !== -1){
-        rand = Math.floor(Math.random() * 100);
+    while (newArray.indexOf(rand) !== -1) {
+      rand = Math.floor(Math.random() * 100);
     }
     newArray.push(rand);
     this.setState({
@@ -47,7 +47,7 @@ class Game extends Component {
     });
   }
 
-  onOption(event){
+  onOption(event) {
     event.preventDefault();
     //let name = event.target.name;
     this.generateRand();
@@ -58,21 +58,37 @@ class Game extends Component {
       <div className="main">
         <h1>Timer counts down here</h1>
         <div className="thumbnail">
-          <img
-            src="https://i.imgur.com/iChU2VU.png"
-            alt="Article thumbnail"
-            width="160px"
-          />
+          {this.state.articles.length > 0 && this.state.currID > -1 && (
+            <img
+              src={this.state.articles[this.state.currID].thumbnail}
+              alt="Article thumbnail"
+              width="320px"
+            />
+          )}
         </div>
         <div className="titleQuestion">
-          <h2>{this.state.articles.length > 0 && this.state.currID > -1 && this.state.articles[this.state.currID].title}</h2>
-          <h2>Fake news?</h2>
+          <h2>
+            {this.state.articles.length > 0 &&
+              this.state.currID > -1 &&
+              this.state.articles[this.state.currID].title}
+          </h2>
+          <h2>Is this fake news?</h2>
         </div>
         <div className="buttons">
-          <button type="button" className="yesButton" name="yes" onClick={this.onOption}>
+          <button
+            type="button"
+            className="yesButton"
+            name="yes"
+            onClick={this.onOption}
+          >
             Yes
           </button>
-          <button type="button" className="noButton" name="no" onClick={this.onOption}>
+          <button
+            type="button"
+            className="noButton"
+            name="no"
+            onClick={this.onOption}
+          >
             No
           </button>
         </div>
