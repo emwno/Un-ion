@@ -49,8 +49,8 @@ class Game extends Component {
   generateRand() {
     let rand = Math.floor(Math.random() * 100);
     var newArray = this.state.questionIDs.slice();
-    while(newArray.indexOf(rand) !== -1){
-        rand = Math.floor(Math.random() * 100);
+    while (newArray.indexOf(rand) !== -1) {
+      rand = Math.floor(Math.random() * 100);
     }
     newArray.push(rand);
     this.setState({
@@ -70,10 +70,10 @@ class Game extends Component {
           time: (this.state.time + 5) 
         });
     } else {
-        console.log("Wrong");
-        this.setState({ 
-          time: (this.state.time - 10) 
-        });
+      console.log("Wrong");
+      this.setState({
+        time: this.state.time - 10
+      });
     }
     this.generateRand();
   }
@@ -93,11 +93,13 @@ class Game extends Component {
       <div className="main">
         <h1>Timer counts down here</h1>
         <div className="thumbnail">
-          <img
-            src="https://i.imgur.com/iChU2VU.png"
-            alt="Article thumbnail"
-            width="160px"
-          />
+          {this.state.articles.length > 0 && this.state.currID > -1 && (
+            <img
+              src={this.state.articles[this.state.currID].thumbnail}
+              alt="Article thumbnail"
+              width="320px"
+            />
+          )}
         </div>
         <div className="titleQuestion">
           <h1>{this.getTime()}</h1>
