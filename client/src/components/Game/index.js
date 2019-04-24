@@ -35,10 +35,13 @@ class Game extends Component {
         console.log(error);
       });
 
-      this.interval = setInterval(() =>
-        this.setState({ 
-          time: (this.state.time - 1) 
-        }), 1000);
+    this.interval = setInterval(
+      () =>
+        this.setState({
+          time: this.state.time - 1
+        }),
+      1000
+    );
   }
 
   componentWillUnmount() {
@@ -59,16 +62,19 @@ class Game extends Component {
     });
   }
 
-  onAnswer(event){
+  onAnswer(event) {
     event.preventDefault();
 
     let fakeStatus = this.state.articles[this.state.currID].fakeNews;
-    if ((fakeStatus && event.target.name === "fake") || (!fakeStatus && event.target.name === "real")) {
-        console.log("Correct!");
-        this.setState({ 
-          score: (this.state.score + 1),
-          time: (this.state.time + 5) 
-        });
+    if (
+      (fakeStatus && event.target.name === "fake") ||
+      (!fakeStatus && event.target.name === "real")
+    ) {
+      console.log("Correct!");
+      this.setState({
+        score: this.state.score + 1,
+        time: this.state.time + 5
+      });
     } else {
       console.log("Wrong");
       this.setState({
@@ -79,10 +85,9 @@ class Game extends Component {
   }
 
   getTime() {
-    if (this.state.time >= 0)
-      return this.state.time;
+    if (this.state.time >= 0) return this.state.time;
     else {
-      alert('lol u fuk piece of shet: ' + this.state.score);
+      alert("lol u fuk piece of shet: " + this.state.score);
       clearInterval(this.interval);
       return 0;
     }
@@ -91,7 +96,7 @@ class Game extends Component {
   render() {
     return (
       <div className="main">
-        <h1>Timer counts down here</h1>
+        <h1>{this.getTime()}</h1>
         <div className="thumbnail">
           {this.state.articles.length > 0 && this.state.currID > -1 && (
             <img
@@ -102,15 +107,28 @@ class Game extends Component {
           )}
         </div>
         <div className="titleQuestion">
-          <h1>{this.getTime()}</h1>
-          <h2>{this.state.articles.length > 0 && this.state.currID > -1 && this.state.articles[this.state.currID].title}</h2>
-          <h2>Fake news?</h2>
+          <h2>
+            {this.state.articles.length > 0 &&
+              this.state.currID > -1 &&
+              this.state.articles[this.state.currID].title}
+          </h2>
+          <h2>Is this fake news?</h2>
         </div>
         <div className="buttons">
-          <button type="button" className="yesButton" name="fake" onClick={this.onAnswer}>
+          <button
+            type="button"
+            className="yesButton"
+            name="fake"
+            onClick={this.onAnswer}
+          >
             Yes
           </button>
-          <button type="button" className="noButton" name="real" onClick={this.onAnswer}>
+          <button
+            type="button"
+            className="noButton"
+            name="real"
+            onClick={this.onAnswer}
+          >
             No
           </button>
         </div>
