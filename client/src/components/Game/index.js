@@ -8,12 +8,14 @@ class Game extends Component {
     this.state = {
       currID: -1,
       time: 60,
+      score: 0,
       questionIDs: [],
       articles: {}
     };
 
     this.generateRand = this.generateRand.bind(this);
-    this.onOption = this.onOption.bind(this);
+    this.onAnswer = this.onAnswer.bind(this);
+    this.getTime = this.getTime.bind(this);
   }
 
   componentDidMount() {
@@ -33,11 +35,11 @@ class Game extends Component {
         console.log(error);
       });
 
-      this.interval = setInterval(() => 
-      this.setState({ 
-        time: (this.state.time - 1) 
-      }), 1000);
-}
+      this.interval = setInterval(() =>
+        this.setState({ 
+          time: (this.state.time - 1) 
+        }), 1000);
+  }
 
   componentWillUnmount() {
     clearInterval(this.interval);
@@ -57,13 +59,14 @@ class Game extends Component {
     });
   }
 
-  onOption(event){
+  onAnswer(event){
     event.preventDefault();
 
     let fakeStatus = this.state.articles[this.state.currID].fakeNews;
     if ((fakeStatus && event.target.name === "fake") || (!fakeStatus && event.target.name === "real")) {
         console.log("Correct!");
         this.setState({ 
+          score: (this.state.score + 1),
           time: (this.state.time + 5) 
         });
     } else {
@@ -73,6 +76,16 @@ class Game extends Component {
         });
     }
     this.generateRand();
+  }
+
+  getTime() {
+    if (this.state.time >= 0)
+      return this.state.time;
+    else {
+      alert('lol u fuk piece of shet: ' + this.state.score);
+      clearInterval(this.interval);
+      return 0;
+    }
   }
 
   render() {
@@ -87,15 +100,15 @@ class Game extends Component {
           />
         </div>
         <div className="titleQuestion">
-          <h1>{this.state.time}</h1>
+          <h1>{this.getTime()}</h1>
           <h2>{this.state.articles.length > 0 && this.state.currID > -1 && this.state.articles[this.state.currID].title}</h2>
           <h2>Fake news?</h2>
         </div>
         <div className="buttons">
-          <button type="button" className="yesButton" name="fake" onClick={this.onOption}>
+          <button type="button" className="yesButton" name="fake" onClick={this.onAnswer}>
             Yes
           </button>
-          <button type="button" className="noButton" name="real" onClick={this.onOption}>
+          <button type="button" className="noButton" name="real" onClick={this.onAnswer}>
             No
           </button>
         </div>
