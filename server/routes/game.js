@@ -5,7 +5,7 @@ module.exports = function(app) {
 		queryBuilder.setPageSize(100);
 
 		Backendless.Data.of(Article)
-		  .find(queryBuilder)
+			.find(queryBuilder)
 			.then(result => {
 				res.status(200);
 				res.send(result);
@@ -26,24 +26,17 @@ module.exports = function(app) {
 				game.timePlayed = req.body.timePlayed;
 
 				// Save Game
-				Backendless.Data.of(Game)
-					.save(game)
-					.then(response => {
+				Backendless.Data.of(Game).save(game)
+					.then(savedGame => {
 						console.log('Game: object saved');
 
 						// Add USER relation to Game
-						Backendless.Data.of(Game)
-							.setRelation(response, 'player', [currentUser])
+						Backendless.Data.of(Game).setRelation(savedGame, 'player', [currentUser])
 							.then(count => {
 								console.log('Game: player relation saved');
 
 								// Add ARTICLES relation to Game
-								Backendless.Data.of(Game)
-									.addRelation(
-										response,
-										'articles',
-										req.body.articles
-									)
+								Backendless.Data.of(Game).addRelation(savedGame, 'articles', req.body.articles)
 									.then(count => {
 										console.log(
 											'Game: articles relation saved'
@@ -57,6 +50,18 @@ module.exports = function(app) {
 							})
 							.catch(error => {
 								console.log('Error - User Relation: ' + error);
+							});
+
+						Backendless.Data.of('Users').addRelation(currentUser, 'games', [savedGame])
+							.then(count => {
+								console.log(
+									'Game: player -game relation saved'
+								);
+							})
+							.catch(error => {
+								console.log(
+									'Error - User -game Relation: ' + error
+								);
 							});
 					})
 					.catch(error => {
