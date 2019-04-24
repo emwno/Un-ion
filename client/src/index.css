@@ -13,7 +13,8 @@ code {
     monospace;
 }
 
-.main {
+/* GAME COMPONENT */
+.game {
   text-align: center;
   padding: 50px;
   margin: auto;
@@ -42,3 +43,5 @@ code {
   font-size: 20px;
   margin: 10px;
 }
+
+/* HOME COMPONENT */
