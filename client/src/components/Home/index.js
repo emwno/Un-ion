@@ -14,6 +14,7 @@ class Home extends Component {
     logout(){
         axios.post('http://localhost:5000/logout', {}).then(response => {
             console.log(response.status);
+            this.props.history.push("/login");
         }).catch(error => {
             console.log(error);
         });
