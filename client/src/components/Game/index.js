@@ -12,6 +12,7 @@ class Game extends Component {
     };
 
     this.generateRand = this.generateRand.bind(this);
+    this.onOption = this.onOption.bind(this);
   }
 
   componentDidMount() {
@@ -34,13 +35,22 @@ class Game extends Component {
 
   //   generate random number and update values
   generateRand() {
-    const rand = Math.floor(Math.random() * 100);
+    let rand = Math.floor(Math.random() * 100);
     var newArray = this.state.questionIDs.slice();
+    while(newArray.indexOf(rand) !== -1){
+        rand = Math.floor(Math.random() * 100);
+    }
     newArray.push(rand);
     this.setState({
       currID: rand,
       questionIDs: newArray
     });
+  }
+
+  onOption(event){
+    event.preventDefault();
+    //let name = event.target.name;
+    this.generateRand();
   }
 
   render() {
@@ -59,10 +69,10 @@ class Game extends Component {
           <h2>Fake news?</h2>
         </div>
         <div className="buttons">
-          <button type="button" className="yesButton">
+          <button type="button" className="yesButton" name="yes" onClick={this.onOption}>
             Yes
           </button>
-          <button type="button" className="noButton">
+          <button type="button" className="noButton" name="no" onClick={this.onOption}>
             No
           </button>
         </div>
