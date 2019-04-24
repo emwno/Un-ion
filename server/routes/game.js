@@ -21,25 +21,45 @@ module.exports = function(app) {
   app.post('/game/save', function(req, res){
     
     Backendless.UserService.getCurrentUser()
-    .then(currentUser => {
+      .then(currentUser => {
 
-      console.log("IN GAME SAVE");
-      var game = new Game();
-      game.player = currentUser.objectId;
-      game.score = req.body.score;
-      game.timePlayed = req.body.timePlayed;
-      game.articles = req.body.articles;  
-      Backendless.Data.of(Game).save(game).then(response =>{
-        console.log(response);
-      }).catch(error=>{
-        console.log(error);
+        console.log("IN GAME SAVE");
+        var game = new Game();
+        game.score = req.body.score;
+        game.timePlayed = req.body.timePlayed;
+
+        // Save Game
+        Backendless.Data.of(Game).save(game)
+          .then(response => {
+            console.log('Game: object saved');
+
+            // Add USER relation to Game
+            Backendless.Data.of(Game).setRelation(response, 'player', [currentUser])
+              .then(count => {
+                console.log('Game: player relation saved');
+
+                // Add ARTICLES relation to Game
+                Backendless.Data.of(Game).addRelation(response, 'articles', req.body.articles)
+                  .then(count => {
+                    console.log('Game: articles relation saved');
+                  })
+                  .catch(error => {
+                    console.log("Error - Article Relation: " + error);
+                  });
+              })
+              .catch(error => {
+                console.log("Error - User Relation: " + error);
+              });
+
+          })
+          .catch(error => {
+            console.log("Error - Game Object: " + error);
+          });
+      })
+      .catch(error => {
+        console.log("Error - Game User: " + error);
       });
-    })
-    .catch(error => {
-      console.log("Game Save Error: " + error);
-      res.status(401);
-      res.send();
-    });
+
   });
 
   function Article() {
@@ -51,7 +71,7 @@ module.exports = function(app) {
   }
 
   function Game(){
-    this.player = "";
+    this.player = {};
     this.score = 0;
     this.timePlayed = 0;
     this.articles = [];

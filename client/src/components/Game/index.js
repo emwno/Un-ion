@@ -66,7 +66,8 @@ class Game extends Component {
 
     this.setState({
       currID: rand,
-      questionIDs: newArray
+      questionIDs: newArray,
+      questionObjectIDs: newQuestionObjectIDs
     });
   }
 
