@@ -52,7 +52,7 @@ class Game extends Component {
     //let name = event.target.name;
     let fakeStatus = this.state.articles[this.state.currID].fakeNews;
     console.log(fakeStatus);
-    if((fakeStatus && event.target.name === "fake") || (!fakeStatus && event.target.name === "no")){
+    if((fakeStatus && event.target.name === "fake") || (!fakeStatus && event.target.name === "real")){
         console.log("Correct!");
     } else{
         console.log("wrong");
@@ -79,7 +79,7 @@ class Game extends Component {
           <button type="button" className="yesButton" name="fake" onClick={this.onOption}>
             Yes
           </button>
-          <button type="button" className="noButton" name="no" onClick={this.onOption}>
+          <button type="button" className="noButton" name="real" onClick={this.onOption}>
             No
           </button>
         </div>
