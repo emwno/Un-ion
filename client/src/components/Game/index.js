@@ -55,7 +55,7 @@ class Game extends Component {
           />
         </div>
         <div className="titleQuestion">
-          <h2>{this.state.articles[this.state.currID].title}</h2>
+          <h2>{this.state.articles.length > 0 && this.state.currID > -1 && this.state.articles[this.state.currID].title}</h2>
           <h2>Fake news?</h2>
         </div>
         <div className="buttons">
