@@ -116,7 +116,7 @@ class Game extends Component {
 
   render() {
     return (
-      <div className="main">
+      <div className="game">
         <h1>{this.getTime()}</h1>
         <div className="thumbnail">
           {this.state.articles.length > 0 && this.state.currID > -1 && (

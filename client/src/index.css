@@ -16,18 +16,9 @@ code {
 /* GAME COMPONENT */
 .game {
   text-align: center;
+  align-content: center;
   padding: 50px;
   margin: auto;
-}
-
-.thumbnail {
-  width: 100%;
-}
-
-.titleQuestion {
-}
-
-.buttons {
 }
 
 .yesButton {
@@ -45,7 +36,7 @@ code {
 }
 
 /* HOME COMPONENT */
-.home {
+.welcome {
   text-align: center;
   padding: 1em;
   margin: auto;

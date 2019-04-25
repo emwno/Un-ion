@@ -45,9 +45,12 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <h1>Home</h1>
-        <p>{this.state.user.name}</p>
-        <button onClick={this.logout}>LOGOUT</button>
+        <div className="logout">
+          <button onClick={this.logout}>LOGOUT</button>
+        </div>
+        <div className="welcome">
+          <h1>Welcome, {this.state.user.name}!</h1>
+        </div>
       </div>
     );
   }
