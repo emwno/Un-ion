@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var Backendless = require('backendless');
 
-var indexRouter = require('./routes/index');
+var homeRouter = require('./routes/home');
 var loginRouter = require('./routes/login');
 var gameRouter = require('./routes/game');
 
@@ -15,19 +15,24 @@ Backendless.initApp(APP_ID, API_KEY);
 
 // Setup access control
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header(
+		'Access-Control-Allow-Headers',
+		'Origin, X-Requested-With, Content-Type, Accept'
+	);
+	next();
 });
 
 // Setup body parser
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+app.use(
+	bodyParser.urlencoded({
+		extended: false
+	})
+);
 app.use(bodyParser.json());
 
 // Setup routes
-indexRouter(app);
+homeRouter(app);
 loginRouter(app);
 gameRouter(app);
 

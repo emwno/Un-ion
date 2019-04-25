@@ -5,7 +5,7 @@ class Home extends Component {
     super(props);
     console.log(this);
     this.state = {
-      titles: ""
+      user: {}
     };
     this.logout = this.logout.bind(this);
   }
@@ -32,9 +32,9 @@ class Home extends Component {
     axios
       .get("http://localhost:5000/")
       .then(response => {
-        console.log(response);
+        console.log(response.data);
         this.setState({
-          titles: response.data[0].title
+          user: response.data
         });
       })
       .catch(function(error) {
@@ -44,13 +44,10 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="overall">
-        <div className="logout">
-          <button onClick={this.logout}>LOGOUT</button>
-        </div>
-        <div className="home">
-          <h1>Welcome!</h1>
-        </div>
+      <div>
+        <h1>Home</h1>
+        <p>{this.state.user.name}</p>
+        <button onClick={this.logout}>LOGOUT</button>
       </div>
     );
   }
