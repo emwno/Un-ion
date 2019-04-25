@@ -44,12 +44,13 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="main">
+      <div className="overall">
         <div className="logout">
           <button onClick={this.logout}>LOGOUT</button>
         </div>
-        <h1>Home</h1>
-        <p>{JSON.stringify(this.state.titles)}</p>
+        <div className="home">
+          <h1>Welcome!</h1>
+        </div>
       </div>
     );
   }

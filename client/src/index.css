@@ -45,3 +45,13 @@ code {
 }
 
 /* HOME COMPONENT */
+.home {
+  text-align: center;
+  padding: 1em;
+  margin: auto;
+}
+
+.logout {
+  text-align: right;
+  padding: 1em;
+}
