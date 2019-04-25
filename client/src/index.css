@@ -46,3 +46,17 @@ code {
   text-align: right;
   padding: 1em;
 }
+
+.eachGame {
+  margin-bottom: 2em;
+  margin-left: 1em;
+}
+
+.historyTitle {
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+.gameText {
+  padding: 0em;
+}

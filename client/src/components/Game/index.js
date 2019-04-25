@@ -29,6 +29,7 @@ class Game extends Component {
         });
         console.log("HELLO");
         console.log(this.state.articles);
+        console.log(this.state.articles[0].title);
 
         // first ID
         this.generateRand();

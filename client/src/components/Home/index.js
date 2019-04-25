@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import GameDetails from "./GameDetails";
 class Home extends Component {
   constructor(props) {
     super(props);
-    console.log(this);
     this.state = {
       user: {}
     };
@@ -32,6 +32,7 @@ class Home extends Component {
     axios
       .get("http://localhost:5000/")
       .then(response => {
+        console.log("test");
         console.log(response.data);
         this.setState({
           user: response.data
@@ -50,6 +51,15 @@ class Home extends Component {
         </div>
         <div className="welcome">
           <h1>Welcome, {this.state.user.name}!</h1>
+        </div>
+        <div className="gameDetails">
+          <h3 className="historyTitle">Here is your game history</h3>
+          {this.state.user.games !== undefined && (
+            <GameDetails
+              key={this.state.user.email}
+              gameList={this.state.user.games}
+            />
+          )}
         </div>
       </div>
     );
