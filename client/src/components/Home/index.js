@@ -4,6 +4,8 @@ import GameDetails from "./GameDetails";
 //import 'semantic-ui-css/semantic.min.css'
 
 import "./styles.css"
+
+var root = "un-ion-coolio.herokuapp.com";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +22,7 @@ class Home extends Component {
 
 	logout() {
 		axios
-			.post('http://localhost:5000/logout', {})
+			.post(root + '/logout', {})
 			.then(response => {
 				console.log(response.status);
 				this.props.history.push('/login');
@@ -31,7 +33,7 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
-    axios.get('http://localhost:5000/login/check')
+    axios.get(root + '/login/check')
     .then(response => {
       this.getUser();
     })
@@ -50,7 +52,7 @@ class Home extends Component {
 
   getUser() {
     axios
-				.get('http://localhost:5000/')
+				.get(root)
 				.then(response => {
 					console.log('test');
 					console.log(response.data);
