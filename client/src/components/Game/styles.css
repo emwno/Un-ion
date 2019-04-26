@@ -1,0 +1,15 @@
+.image{
+    border-radius: 20px;
+}
+.time{
+    position: relative;
+    text-align: center;
+}
+.content{
+   /* margin-left: 40%; */
+}
+
+.img{
+    margin-left: 43%;
+    display: inline;
+}

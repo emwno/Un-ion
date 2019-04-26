@@ -2,7 +2,7 @@
   margin-left: 6%;
   font-size: 220.42%;
   text-align: center;
-  color: rgb(187, 125, 74);
+  color: rgb(187, 129, 74);
   padding-top: 0.2%;
   
 }
@@ -30,6 +30,7 @@
   width: 20%;
   height: 30%;
   font-size: 20px;
+  margin-bottom: 0.3%;
 }
 
 .logout{
@@ -54,6 +55,7 @@
   width: 70%;
   border-radius: 10px;
   height: 12%;
+  font-size: 17px;
   background-color: rgba(106, 63, 128, 0.527);
 }
 

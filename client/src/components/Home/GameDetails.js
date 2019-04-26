@@ -12,7 +12,7 @@ class GameDetails extends Component {
               <div className="box">
               <b>Game {i + 1}</b>
               </div>
-              <div className="gameText">Score: {game.score}</div>
+              <div className="gameText"><b>Score: {game.score}</b></div>
               <div className="gameText">Time played: {game.timePlayed}</div>
               <div className="gameText">
                 Articles:{" "}

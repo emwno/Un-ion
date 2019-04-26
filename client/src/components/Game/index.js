@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import axios from "axios";
 import 'semantic-ui-css/semantic.min.css'
+import "./styles.css";
+
 class Game extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       currID: -1,
-      time: 6,
+      time: 6000,
       timePlayed: 0,
       score: 0,
       questionIDs: [],
       questionObjectIDs: [],
-      articles: {}
+      articles: {},
+      color: "black"
     };
 
     this.generateRand = this.generateRand.bind(this);
@@ -42,7 +45,8 @@ class Game extends Component {
       () =>
         this.setState({
           time: this.state.time - 1,
-          timePlayed: this.state.timePlayed + 1
+          timePlayed: this.state.timePlayed + 1,
+          color: "black"
         }),
       1000
     );
@@ -83,12 +87,14 @@ class Game extends Component {
       console.log("Correct!");
       this.setState({
         score: this.state.score + 1,
-        time: this.state.time + 5
+        time: this.state.time + 5,
+        color: "green"
       });
     } else {
       console.log("Wrong");
       this.setState({
-        time: this.state.time - 10
+        time: this.state.time - 10,
+        color: "red"
       });
     }
     this.generateRand();
@@ -118,13 +124,14 @@ class Game extends Component {
   render() {
     return (
       <div className="game">
-        <div className="timer">
-          <h1>{this.getTime()}</h1>
+        <div class="ui header">
+        <img className = "img" src="https://img.icons8.com/color/48/000000/time.png"></img>
+        <div class="content"><h1 className="time" style={{color: this.state.color}}>{this.getTime()}</h1></div>
         </div>
         <div className="details">
           <div className="thumbnail">
             {this.state.articles.length > 0 && this.state.currID > -1 && (
-              <img
+              <img className="image"
                 src={this.state.articles[this.state.currID].thumbnail}
                 alt="Article thumbnail"
                 width="600"
@@ -142,21 +149,21 @@ class Game extends Component {
         <div className="buttons">
           <button
             type="button"
-            className="fakeButton"
-            class="negative ui button"
-            name="fake"
-            onClick={this.onAnswer}
-          >
-            Fake
-          </button>
-          <button
-            type="button"
             className="realButton"
             class="positive ui button"
             name="real"
             onClick={this.onAnswer}
           >
             Real
+          </button>
+          <button
+            type="button"
+            className="fakeButton"
+            class="negative ui button"
+            name="fake"
+            onClick={this.onAnswer}
+          >
+            Fake
           </button>
         </div>
       </div>
