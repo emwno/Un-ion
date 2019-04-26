@@ -15,44 +15,24 @@ code {
 
 /* GAME COMPONENT */
 .game {
-  margin-top: 2em;
-  margin-left: 2em;
+  text-align: center;
+  align-content: center;
   padding: 50px;
-  float: left;
-  width: 60%;
+  margin: auto;
 }
 
-.timer {
-  text-align: center;
-  margin-bottom: 1em;
-}
-
-.thumbnail {
-  text-align: center;
-}
-
-.titleQuestion {
-  padding: 1em;
-  text-align: center;
-}
-
-.buttons {
-  padding: 1em;
-  text-align: center;
-}
-
-.realButton {
+.yesButton {
   width: 100px;
   height: 40px;
   font-size: 20px;
-  margin-right: 0.5em;
+  margin: 10px;
 }
 
-.fakeButton {
+.noButton {
   width: 100px;
   height: 40px;
   font-size: 20px;
-  margin-left: 0.5em;
+  margin: 10px;
 }
 
 /* HOME COMPONENT */
