@@ -104,14 +104,14 @@ class Game extends Component {
           timePlayed: this.state.timePlayed,
           articles: this.state.questionObjectIDs
         })
-        .then(function(response) {
+        .then(response => {
           console.log(response);
+          this.props.history.push("/");
         })
-        .catch(function(error) {
+        .catch(error => {
           console.log(error);
+          this.props.history.push("/");
         });
-      this.props.history.push("/");
-      return 0;
     }
   }
 

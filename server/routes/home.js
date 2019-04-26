@@ -12,7 +12,7 @@ module.exports = function(app) {
 						res.send(updatedUser);
 					})
 					.catch(error => {
-						console.log('Updated Fetched User Error');
+						console.log('Updated Fetched User Error: ' + error);
 						res.status(401);
 						res.send();
 					});
