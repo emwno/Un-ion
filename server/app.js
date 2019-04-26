@@ -38,4 +38,5 @@ gameRouter(app);
 
 // Setup listener
 const port = 5000;
-app.listen(port, () => `Server running on port ${port}`);
+const herokuPort = process.env.port;
+app.listen(herokuPort || port, () => `Server running on port ${herokuPort}`);
