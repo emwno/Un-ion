@@ -11,3 +11,39 @@ body {
 .page-login {
   margin-top: 200px;
 }
+
+.loginBox{
+  width: 40%;
+  height: 80%;
+  background-color: rgba(106, 63, 128, 0.24);
+  
+  border-radius: 20px;
+  text-align: center;
+  margin-left: 30%;
+
+}
+
+.loginButton{
+  border-radius: 20px;
+  height: 2%;
+  width: 13%;
+  align-self: auto;
+}
+
+.username{
+  padding-top: 2%;
+  align-self: auto;
+}
+.password{
+  padding-top: 1%;
+  align-self: auto;
+}
+
+.label{
+  font-size: 200%;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.inputBox{
+    height: 20px;
+}

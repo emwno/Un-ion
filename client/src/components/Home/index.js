@@ -5,7 +5,8 @@ import GameDetails from "./GameDetails";
 
 import "./styles.css";
 
-var root = "http://localhost:5000";
+var serverURL = "https://un-ion-server.herokuapp.com/";
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,7 @@ class Home extends Component {
 
   logout() {
     axios
-      .post(root + "/logout", {})
+      .post(serverURL+ "logout", {})
       .then(response => {
         console.log(response.status);
         this.props.history.push("/login");
@@ -34,7 +35,7 @@ class Home extends Component {
 
   componentDidMount() {
     axios
-      .get(root + "/login/check")
+      .get(serverURL+ "login/check")
       .then(response => {
         this.getUser();
       })
@@ -53,7 +54,7 @@ class Home extends Component {
 
   getUser() {
     axios
-      .get(root)
+      .get(serverURL)
       .then(response => {
         console.log("test");
         console.log(response.data);

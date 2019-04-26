@@ -1,19 +1,43 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "semantic-ui-css/semantic.min.css";
 import "./styles.css";
+
+var serverURL = "https://un-ion-server.herokuapp.com/";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.onLogin = this.onLogin.bind(this);
+    this.register = this.register.bind(this);
+  }
+
+  register(event){
+    //console.log(this.refs.username.value);
+    //console.log(this.refs.password.value);
+    event.preventDefault();
+    var username = this.refs.username.value;
+    var password = this.refs.password.value;
+
+    axios
+      .post(serverURL + "login/register", {
+        username: username,
+        password: password
+      })
+      .then(response => {
+        console.log("Login: " + response.statusText);
+        alert("Registration Success!");
+      })
+      .catch(error => {
+        console.log("Login " + error);
+        alert("Registration Unsuccessful");
+      });
   }
 
   onLogin(event) {
     event.preventDefault();
 
     axios
-      .post("http://localhost:5000/login", {
+      .post(serverURL + "login", {
         username: event.target.username.value,
         password: event.target.password.value
       })
@@ -28,7 +52,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:5000/login/check").then(response => {
+    axios.get(serverURL + "login/check").then(response => {
       console.log("Logged In: Redirect to /");
       this.props.history.push("/");
     });
@@ -36,39 +60,49 @@ class Login extends Component {
 
   render() {
     return (
-      <div class="page-login">
-        <h1 class="title">Un-ion</h1>
-        <div class="ui centered grid container" >
-          <div class="nine wide column">
-            <div class="ui fluid card">
-              <div class="content">
-                <form class="ui form" method="POST" onSubmit={this.onLogin}>
-                  <div class="field">
-                    <label>User</label>
-                    <input
-                      type="text"
-                      name="username"
-                      placeholder="Username"
-                      required
-                    />
-                  </div>
-                  <div class="field">
-                    <label>Password</label>
-                    <input
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      required
-                    />
-                  </div>
-                  <button class="ui primary labeled icon button" type="submit">
-                    <i class="unlock alternate icon" />
-                    Login
-                  </button>
-                </form>
-              </div>
+      <div>
+        <h1 className="title">Un-ion</h1>
+        <div className="loginBox">
+          <form className="ui form" method="POST" onSubmit={this.onLogin}>
+            <br />
+            <div className="username">
+              <label className="label">Username</label>
+              <input
+                className="inputBox"
+                type="text"
+                name="username"
+                placeholder="Username"
+                ref="username"
+                required
+              />
             </div>
+
+            <div className="password">
+              <label className="label">Password</label>
+              <input
+                className="inputBox"
+                type="password"
+                name="password"
+                placeholder="Password"
+                ref="password"
+                required
+              />
+            </div>
+            <br />
+            <button className="loginButton" type="submit">
+              <i className="unlock alternate icon" />
+              Login
+            </button>
+            <br />
+            <br />
+          </form>
+
+          <div>
+            <button className="loginButton" onClick={this.register}>
+              Register
+            </button>
           </div>
+          <br></br>
         </div>
       </div>
     );

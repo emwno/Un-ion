@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
-import 'semantic-ui-css/semantic.min.css'
 import "./styles.css";
 
+var serverURL = "https://un-ion-server.herokuapp.com/";
 class Game extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       currID: -1,
-      time: 6000,
+      time: 60,
       timePlayed: 0,
       score: 0,
       questionIDs: [],
@@ -25,7 +25,7 @@ class Game extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/game")
+      .get(serverURL+ "game")
       .then(response => {
         this.setState({
           articles: response.data
@@ -105,13 +105,14 @@ class Game extends Component {
     else {
       clearInterval(this.interval);
       axios
-        .post("http://localhost:5000/game/save", {
+        .post(serverURL + "game/save", {
           score: this.state.score,
           timePlayed: this.state.timePlayed,
           articles: this.state.questionObjectIDs
         })
         .then(response => {
           console.log(response);
+          alert("Game over. Score: " + this.state.score);
           this.props.history.push("/");
         })
         .catch(error => {
@@ -124,9 +125,9 @@ class Game extends Component {
   render() {
     return (
       <div className="game">
-        <div class="ui header">
-        <img className = "img" src="https://img.icons8.com/color/48/000000/time.png"></img>
-        <div class="content"><h1 className="time" style={{color: this.state.color}}>{this.getTime()}</h1></div>
+        <div class="header">
+        {/* <img className = "img" src="https://img.icons8.com/color/48/000000/time.png"></img> */}
+        <div><h1 className="time" style={{color: this.state.color}}>{this.getTime()}</h1></div>
         </div>
         <div className="details">
           <div className="thumbnail">
@@ -149,8 +150,7 @@ class Game extends Component {
         <div className="buttons">
           <button
             type="button"
-            className="realButton"
-            class="positive ui button"
+            class="real"
             name="real"
             onClick={this.onAnswer}
           >
@@ -158,8 +158,7 @@ class Game extends Component {
           </button>
           <button
             type="button"
-            className="fakeButton"
-            class="negative ui button"
+            class="fake"
             name="fake"
             onClick={this.onAnswer}
           >
