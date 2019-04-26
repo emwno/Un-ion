@@ -1,25 +1,25 @@
 {
-    "name": "Un-ion",
-    "version": "1.0.0",
-    "description": "## Members * Aahan Aggarwal    aggarw57@purdue.edu * Aashir Aumir \t\taaumir@purdue.edu * Arjun Srinivasan  sriniv58@purdue.edu",
-    "main": "index.js",
-    "scripts": {
-        "client": "cd client && npm start",
-        "server": "cd server && npm start",
-        "start": "cd server && npm start"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/emwno/Un-ion.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "concurrently": "^4.1.0"
-    },
-    "bugs": {
-        "url": "https://github.com/emwno/Un-ion/issues"
-    },
-    "homepage": "https://github.com/emwno/Un-ion#readme"
+  "name": "Un-ion",
+  "version": "1.0.0",
+  "description": "## Members * Aahan Aggarwal    aggarw57@purdue.edu * Aashir Aumir \t\taaumir@purdue.edu * Arjun Srinivasan  sriniv58@purdue.edu",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd server && npm start",
+    "start": "concurrently --kill-others \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emwno/Un-ion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  },
+  "bugs": {
+    "url": "https://github.com/emwno/Un-ion/issues"
+  },
+  "homepage": "https://github.com/emwno/Un-ion#readme"
 }
