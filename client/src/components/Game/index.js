@@ -7,7 +7,7 @@ class Game extends Component {
 
     this.state = {
       currID: -1,
-      time: 6,
+      time: 15,
       timePlayed: 0,
       score: 0,
       questionIDs: [],
@@ -118,39 +118,45 @@ class Game extends Component {
   render() {
     return (
       <div className="game">
-        <h1>{this.getTime()}</h1>
-        <div className="thumbnail">
-          {this.state.articles.length > 0 && this.state.currID > -1 && (
-            <img
-              src={this.state.articles[this.state.currID].thumbnail}
-              alt="Article thumbnail"
-            />
-          )}
+        <div className="timer">
+          <h1>{this.getTime()}</h1>
         </div>
-        <div className="titleQuestion">
-          <h2>
-            {this.state.articles.length > 0 &&
-              this.state.currID > -1 &&
-              this.state.articles[this.state.currID].title}
-          </h2>
-          <h2>Is this fake news?</h2>
+        <div className="details">
+          <div className="thumbnail">
+            {this.state.articles.length > 0 && this.state.currID > -1 && (
+              <img
+                src={this.state.articles[this.state.currID].thumbnail}
+                alt="Article thumbnail"
+                width="600"
+              />
+            )}
+          </div>
+          <div className="titleQuestion">
+            <h2>
+              {this.state.articles.length > 0 &&
+                this.state.currID > -1 &&
+                this.state.articles[this.state.currID].title}
+            </h2>
+          </div>
         </div>
         <div className="buttons">
           <button
             type="button"
-            className="yesButton"
+            className="fakeButton"
+            class="negative ui button"
             name="fake"
             onClick={this.onAnswer}
           >
-            Yes
+            Fake
           </button>
           <button
             type="button"
-            className="noButton"
+            className="realButton"
+            class="positive ui button"
             name="real"
             onClick={this.onAnswer}
           >
-            No
+            Real
           </button>
         </div>
       </div>
