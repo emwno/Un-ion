@@ -1,0 +1,36 @@
+.title1 {
+  font-size: 220.42%;
+  text-align: center;
+  color: rgb(187, 125, 74);
+  padding-top: 0.2%;
+}
+
+.history {
+  font-size: 180.42%;
+  color: rgb(187, 125, 74);
+}
+
+.play{
+  position: relative;
+  margin-left: 37%;
+  margin-right: 45%;
+  background-color: rgba(106, 63, 128, 0.527);
+  border-radius: 10px;
+  width: 20%;
+  height: 30%;
+  font-size: 20px;
+}
+
+.logout{
+  position: relative;
+  float:right;
+  background-color: rgba(106, 63, 128, 0.527);
+  border-radius: 10px;
+  height: 10%;
+  font-size: 14px;
+  margin-top: 0.6%;
+  margin-right: 0.6%;
+}
+
+
+

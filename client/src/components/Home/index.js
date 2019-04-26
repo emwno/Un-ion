@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import GameDetails from "./GameDetails";
-import 'semantic-ui-css/semantic.min.css'
+//import 'semantic-ui-css/semantic.min.css'
+
+import "./styles.css"
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +11,11 @@ class Home extends Component {
       user: {}
     };
     this.logout = this.logout.bind(this);
+    this.game = this.game.bind(this);
+  }
+
+  game(){
+    this.props.history.push("/game");
   }
 
   logout() {
@@ -47,14 +54,21 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div className="logout">
-          <button onClick={this.logout}>LOGOUT</button>
+        <div >
+          <button className="logout" onClick={this.logout}>LOGOUT</button>
         </div>
         <div className="welcome">
-          <h1>Welcome, {this.state.user.name}!</h1>
+          <h1 class="title1">Welcome, {this.state.user.name}!</h1>
         </div>
+
+        <div class="playGame">
+          <button className="play" onClick={this.game}>Play Game</button>
+        <hr></hr>
+        </div>
+
+        
         <div className="gameDetails">
-          <h3 className="historyTitle">Here is your game history</h3>
+          <h3 className="history">Here is your game history: </h3>
           {this.state.user.games !== undefined && (
             <GameDetails
               key={this.state.user.email}

@@ -7,7 +7,7 @@ class Game extends Component {
 
     this.state = {
       currID: -1,
-      time: 60,
+      time: 6,
       timePlayed: 0,
       score: 0,
       questionIDs: [],
@@ -124,7 +124,6 @@ class Game extends Component {
             <img
               src={this.state.articles[this.state.currID].thumbnail}
               alt="Article thumbnail"
-              width="320px"
             />
           )}
         </div>

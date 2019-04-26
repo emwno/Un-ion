@@ -37,6 +37,7 @@ class Login extends Component {
   render() {
     return (
       <div class="page-login">
+        <h1 class="title">Un-ion</h1>
         <div class="ui centered grid container">
           <div class="nine wide column">
             <div class="ui fluid card">
