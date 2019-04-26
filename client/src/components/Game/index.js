@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import 'semantic-ui-css/semantic.min.css'
 class Game extends Component {
   constructor(props) {
     super(props);
