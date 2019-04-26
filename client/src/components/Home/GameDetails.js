@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./styles.css";
 
 class GameDetails extends Component {
   render() {
@@ -8,8 +9,8 @@ class GameDetails extends Component {
         {this.props.gameList.map(function(game, i) {
           return (
             <div className="eachGame" key={i}>
-              <div className="gameText">
-                <b>Game {i + 1}</b>
+              <div className="box">
+              <b>Game {i + 1}</b>
               </div>
               <div className="gameText">Score: {game.score}</div>
               <div className="gameText">Time played: {game.timePlayed}</div>
@@ -25,9 +26,13 @@ class GameDetails extends Component {
                           <a href={article.link}>{article.title}</a>
                         </li>
                       </ul>
+                      
                     </div>
+              
                   );
                 })}
+            {/* <hr></hr> */}
+
               </div>
             </div>
           );
